@@ -36,7 +36,7 @@ module.exports = {
           owner: "sebastienwolf",
           name: "desktop-meteo",
         },
-        authToken: "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",
+        authToken: "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",
         prerelease: false,
         draft: true,
       },
