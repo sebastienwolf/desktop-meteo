@@ -995,6 +995,11 @@
     "buffer-equal" "^1.0.0"
     "minimatch" "^3.0.4"
 
+"dotenv@^16.3.1":
+  "integrity" "sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.3.1.tgz"
+  "version" "16.3.1"
+
 "electron-packager@^17.1.2":
   "integrity" "sha512-XofXdikjYI7MVBcnXeoOvRR+yFFFHOLs3J7PF5KYQweigtgLshcH4W660PsvHr4lYZ03JBpLyEcUB8DzHZ+BNw=="
   "resolved" "https://registry.npmjs.org/electron-packager/-/electron-packager-17.1.2.tgz"
