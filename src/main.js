@@ -1,5 +1,3 @@
-console.log("Hello from Electron 👋");
-
 const {
   app,
   BrowserWindow,
@@ -19,14 +17,6 @@ setInterval(() => {
 }, 60000);
 
 updateElectronApp();
-//   {
-//   updateSource: {
-//     type: UpdateSourceType.ElectronPublicUpdateService,
-//     repo: "sebastienwolf/desktop-meteo",
-//   },
-//   updateInterval: "1 hour",
-//   logger: require("electron-log"),
-// }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -40,8 +30,8 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
+      // nodeIntegration: true,
+      // contextIsolation: false,
     },
   });
 
