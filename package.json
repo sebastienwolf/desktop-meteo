@@ -1,7 +1,7 @@
 {
   "name": "electrongeo",
   "productName": "electrongeo",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "My Electron application description",
   "main": "src/main.js",
   "repository": {
@@ -10,7 +10,7 @@
   },
   "update": {
     "provider": "github",
-    "url": "https://github.com/sebastienwolf/desktop-meteo/releases/download/v0.0.0/mon-app-0.0.0.dmg"
+    "url": "https://github.com/sebastienwolf/desktop-meteo/releases/download/v0.0.5/mon-app-0.0.5.dmg"
   },
   "scripts": {
     "start": "electron-forge start",
