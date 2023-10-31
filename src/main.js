@@ -7,8 +7,6 @@ const {
   autoUpdater,
   dialog,
 } = require("electron");
-const dotenv = require("dotenv");
-dotenv.config();
 const path = require("path");
 const { updateElectronApp, UpdateSourceType } = require("update-electron-app");
 const os = require("os-utils");

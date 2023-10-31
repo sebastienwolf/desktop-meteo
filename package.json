@@ -1,7 +1,7 @@
 {
   "name": "electrongeo",
   "productName": "electrongeo",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "My Electron application description",
   "main": "src/main.js",
   "repository": {
@@ -26,7 +26,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.3.1",
     "electron-squirrel-startup": "^1.0.0",
     "os-utils": "^0.0.14",
     "update-electron-app": "^3.0.0"
@@ -38,7 +37,6 @@
     "@electron-forge/maker-squirrel": "^6.4.2",
     "@electron-forge/maker-zip": "^6.4.2",
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
-    "@electron-forge/publisher-github": "^6.4.2",
     "electron": "27.0.2"
   }
 }
