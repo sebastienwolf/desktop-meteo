@@ -68,7 +68,6 @@ async function useWeatherData() {
   });
 
   chartJs(data);
-  getNameFromMainProcess();
 }
 
 function chartJs(data) {
@@ -124,6 +123,8 @@ func();
 const cpu = async () => {
   const response = await window.versions.cpu();
   console.log(`le CPU est à ${response} de charge`);
+  document.getElementById("temp-process").textContent =
+    "le CPU est à " + response + " de charge";
 };
 
 cpu();

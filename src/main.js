@@ -1,8 +1,31 @@
 console.log("Hello from Electron 👋");
-const { app, BrowserWindow, ipcMain } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  autoUpdater,
+  dialog,
+} = require("electron");
 const path = require("path");
-
+const { updateElectronApp, UpdateSourceType } = require("update-electron-app");
 const os = require("os-utils");
+const server = "https://github.com/sebastienwolf/desktop-meteo";
+const url = `${server}/update/${process.platform}/${app.getVersion()}`;
+autoUpdater.setFeedURL({ url });
+
+setInterval(() => {
+  autoUpdater.checkForUpdates();
+}, 60000);
+
+updateElectronApp();
+//   {
+//   updateSource: {
+//     type: UpdateSourceType.ElectronPublicUpdateService,
+//     repo: "sebastienwolf/desktop-meteo",
+//   },
+//   updateInterval: "1 hour",
+//   logger: require("electron-log"),
+// }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -46,6 +69,7 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+  autoUpdater();
 });
 
 app.whenReady().then(() => {
@@ -59,6 +83,21 @@ app.whenReady().then(() => {
   });
 
   ipcMain.handle("ping", () => "pong");
+});
+
+autoUpdater.on("update-downloaded", (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: "info",
+    buttons: ["Restart", "Later"],
+    title: "Application Update",
+    message: process.platform === "win32" ? releaseNotes : releaseName,
+    detail:
+      "A new version has been downloaded. Restart the application to apply the updates.",
+  };
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+  });
 });
 
 // In this file you can include the rest of your app's specific main process
