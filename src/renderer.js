@@ -140,6 +140,9 @@ function chartJs(data) {
   const temperatureData = data.map((data) => data[1]); // Exemple de données de température
   const labels = data.map((data) => data[0]); // Exemple d'étiquettes pour l'axe des X
 
+  const minTemperature = Math.min(...temperatureData);
+  const maxTemperature = Math.max(...temperatureData);
+
   // Obtenez une référence à l'élément canvas
   const ctx = document.getElementById("temperature-chart").getContext("2d");
 
@@ -164,9 +167,9 @@ function chartJs(data) {
 
       scales: {
         y: {
-          beginAtZero: true,
-          suggestedMin: 0,
-          suggestedMax: 30, // Ajustez cette valeur en fonction de vos données
+          beginAtZero: false,
+          suggestedMin: minTemperature - 3,
+          suggestedMax: maxTemperature + 3, // Ajustez cette valeur en fonction de vos données
         },
       },
     },
