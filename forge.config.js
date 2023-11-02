@@ -10,6 +10,7 @@ module.exports = {
       name: "@electron-forge/maker-squirrel",
       config: {
         setupIcon: "./src/assets/icone.ico",
+        hideConsole: true,
       },
     },
     {

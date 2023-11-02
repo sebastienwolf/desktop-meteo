@@ -188,7 +188,7 @@ const cpu = async () => {
   const response = await window.versions.cpu();
   // console.log(`le CPU est à ${response} de charge`);
   document.getElementById("temp-process").textContent =
-    "le CPU est à " + response + " de charge";
+    "le CPU est à " + Number(response).toFixed(2) + "% de charge";
   return response;
 };
 
