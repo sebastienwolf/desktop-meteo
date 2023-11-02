@@ -12,7 +12,7 @@ async function fetchWeatherData() {
     "&lang=fr" +
     "&appid=" +
     apikey;
-  console.log(apiUrl);
+  // console.log(apiUrl);
 
   try {
     const response = await fetch(apiUrl);
@@ -93,7 +93,7 @@ async function useWeatherData() {
   // Créez des cartes pour afficher les données
 
   createCards("one", dataOne);
-  createCards("all", dataFiveDays);
+  // createCards("all", dataFiveDays);
 
   chartJs(dataFiveDays);
 }
@@ -155,10 +155,13 @@ function chartJs(data) {
           borderColor: "rgba(75, 192, 192, 1)",
           borderWidth: 2,
           fill: false,
+          tension: 0.4,
         },
       ],
     },
     options: {
+      responsive: true,
+
       scales: {
         y: {
           beginAtZero: true,
@@ -178,13 +181,6 @@ useWeatherData(); // Déclenche le processus pour récupérer les données mét�
 const information = document.getElementById("info");
 information.innerText = `Cette application utilise Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), et Electron (v${versions.electron()})`;
 
-const func = async () => {
-  const response = await window.versions.ping();
-  console.log(response); // Affichera 'pong'
-};
-
-func();
-
 const cpu = async () => {
   const response = await window.versions.cpu();
   // console.log(`le CPU est à ${response} de charge`);
@@ -200,7 +196,7 @@ const tempCpu = async () => {
   // console.log(`le CPU est à ${response} de charge`);
   // document.getElementById("temp-process").textContent =
   //   "le CPU est à " + response + " de charge";
-  console.log(response);
+  // console.log(response);
   return response;
 };
 

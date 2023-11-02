@@ -71,8 +71,8 @@ app.whenReady().then(() => {
   ipcMain.handle("cpu", () => {
     return new Promise((resolve) => {
       os.cpuUsage(function (v) {
-        console.log("CPU Usage (%): " + v);
-        resolve(v);
+        // console.log("CPU Usage (%): " + v * 100);
+        resolve(v * 100);
       });
     });
   });
@@ -80,7 +80,7 @@ app.whenReady().then(() => {
   ipcMain.handle("tempCpu", () => {
     return new Promise((resolve) => {
       si.cpuTemperature(function (v) {
-        console.log("Objet Cpu " + v.main);
+        // console.log("Objet Cpu " + v.main);
         resolve(v);
       });
     });
