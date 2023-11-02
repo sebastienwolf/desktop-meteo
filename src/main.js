@@ -5,6 +5,7 @@ const {
   autoUpdater,
   dialog,
 } = require("electron");
+
 const path = require("path");
 const { updateElectronApp, UpdateSourceType } = require("update-electron-app");
 const os = require("os-utils");

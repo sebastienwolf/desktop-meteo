@@ -122,9 +122,14 @@ func();
 
 const cpu = async () => {
   const response = await window.versions.cpu();
-  console.log(`le CPU est à ${response} de charge`);
+  // console.log(`le CPU est à ${response} de charge`);
   document.getElementById("temp-process").textContent =
     "le CPU est à " + response + " de charge";
+  return response;
 };
 
 cpu();
+
+setInterval(() => {
+  const b = cpu();
+}, 10000);
