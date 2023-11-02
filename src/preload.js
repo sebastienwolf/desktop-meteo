@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld("versions", {
   electron: () => process.versions.electron,
   ping: () => ipcRenderer.invoke("ping"),
   cpu: () => ipcRenderer.invoke("cpu"),
+  tempCpu: () => ipcRenderer.invoke("tempCpu"),
 
   //Nous pouvons exposer des variables en plus des fonctions
 });

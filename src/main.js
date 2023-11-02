@@ -9,6 +9,7 @@ const {
 const path = require("path");
 const { updateElectronApp, UpdateSourceType } = require("update-electron-app");
 const os = require("os-utils");
+const si = require("systeminformation");
 const server = "https://github.com/sebastienwolf/desktop-meteo";
 const url = `${server}/update/${process.platform}/${app.getVersion()}`;
 autoUpdater.setFeedURL({ url });
@@ -71,6 +72,15 @@ app.whenReady().then(() => {
     return new Promise((resolve) => {
       os.cpuUsage(function (v) {
         console.log("CPU Usage (%): " + v);
+        resolve(v);
+      });
+    });
+  });
+
+  ipcMain.handle("tempCpu", () => {
+    return new Promise((resolve) => {
+      si.cpuTemperature(function (v) {
+        console.log("Objet Cpu " + v.main);
         resolve(v);
       });
     });

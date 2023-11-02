@@ -27,47 +27,112 @@ async function fetchWeatherData() {
   }
 }
 
-async function useWeatherData() {
-  // Appelez la fonction pour récupérer les données météorologiques
-  const weatherData = await fetchWeatherData();
-
+function createArrayData(type, object) {
   const data = [];
 
-  weatherData.list.forEach((element) => {
-    const info = [];
-    info.push(element.dt_txt);
-    info.push(element.main.temp);
-    info.push(element.weather[0].description);
-    data.push(info);
-  });
-  console.log(data);
+  if (type == "one") {
+    const dateActuelle = new Date();
+    const jour = dateActuelle.getDate().toString().padStart(2, "0");
+    const mois = (dateActuelle.getMonth() + 1).toString().padStart(2, "0");
+    const annee = dateActuelle.getFullYear();
+    const dateEnString = `${jour}-${mois}-${annee}`;
 
-  document.getElementById("city-name").textContent = weatherData.city.name;
+    data.push(dateEnString);
+    data.push(object.main.temp);
+    data.push(object.weather[0].description);
+  } else {
+    object.list.forEach((element) => {
+      const info = [];
+      info.push(element.dt_txt);
+      info.push(element.main.temp);
+      info.push(element.weather[0].description);
+      data.push(info);
+    });
+  }
+  return data;
+}
+
+async function fetchOneTempData() {
+  const lat = "43.296482";
+  const lon = "5.36978";
+  const apikey = "ce594e43db947220ca66ff854126f346";
+
+  const apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&units=metric" +
+    "&lang=fr" +
+    "&appid=" +
+    apikey;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      const dataMeteo = await response.json();
+      return dataMeteo; // Retournez les données météorologiques
+    } else {
+      console.error("La requête n'a pas réussi.");
+    }
+  } catch (error) {
+    console.error("Erreur de la requête :", error);
+  }
+}
+
+async function useWeatherData() {
+  // Appelez la fonction pour récupérer les données météorologiques
+  const temp5Days = await fetchWeatherData();
+  const temp = await fetchOneTempData();
+
+  const dataOne = createArrayData("one", temp);
+  const dataFiveDays = createArrayData("all", temp5Days);
+
+  document.getElementById("city-name").textContent = temp5Days.city.name;
 
   // Créez des cartes pour afficher les données
+
+  createCards("one", dataOne);
+  createCards("all", dataFiveDays);
+
+  chartJs(dataFiveDays);
+}
+
+function createCards(type, data) {
   const weatherCards = document.getElementById("weather-cards");
+  const primaryWeatherCards = document.getElementById("primary-weather-cards");
 
-  data.forEach((info) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+  if (type == "one") {
+    const card = createDomForCards(data);
 
-    const date = document.createElement("p");
-    date.textContent = `Date: ${info[0]}`;
+    primaryWeatherCards.appendChild(card);
+  } else {
+    data.forEach((info) => {
+      const card = createDomForCards(info);
 
-    const temperature = document.createElement("p");
-    temperature.textContent = `Temperature: ${info[1]}°C`;
+      weatherCards.appendChild(card);
+    });
+  }
+}
 
-    const description = document.createElement("p");
-    description.textContent = `Description: ${info[2]}`;
+function createDomForCards(data) {
+  const card = document.createElement("div");
+  card.classList.add("card");
 
-    card.appendChild(date);
-    card.appendChild(temperature);
-    card.appendChild(description);
+  const date = document.createElement("p");
+  date.textContent = `Date: ${data[0]}`;
 
-    weatherCards.appendChild(card);
-  });
+  const temperature = document.createElement("p");
+  temperature.textContent = `Temperature: ${data[1]}°C`;
 
-  chartJs(data);
+  const description = document.createElement("p");
+  description.textContent = `Description: ${data[2]}`;
+
+  card.appendChild(date);
+  card.appendChild(temperature);
+  card.appendChild(description);
+
+  return card;
 }
 
 function chartJs(data) {
@@ -129,6 +194,17 @@ const cpu = async () => {
 };
 
 cpu();
+
+const tempCpu = async () => {
+  const response = await window.versions.tempCpu();
+  // console.log(`le CPU est à ${response} de charge`);
+  // document.getElementById("temp-process").textContent =
+  //   "le CPU est à " + response + " de charge";
+  console.log(response);
+  return response;
+};
+
+tempCpu();
 
 setInterval(() => {
   const b = cpu();
