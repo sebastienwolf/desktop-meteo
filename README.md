@@ -5,7 +5,7 @@
 - [Electron : Docs]([https://expo.github.io/router](https://www.electronjs.org/fr/docs/latest/))  
   
 ## 📝 Installation  
-Pour installer les dépendances, exécutez la commande suivante :  
+To install the dependencies, run the following command: 
 - npm install    
   
 ## 📝 Developpement   
