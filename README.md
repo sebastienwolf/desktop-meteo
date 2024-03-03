@@ -8,7 +8,7 @@
 To install the dependencies, run the following command: 
 - npm install    
   
-## 📝 Developpement   
+## 📝 Development  
 To launch the development screen, run the following command:
 - npm start  
   
