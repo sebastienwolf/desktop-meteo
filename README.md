@@ -9,7 +9,7 @@ To install the dependencies, run the following command:
 - npm install    
   
 ## 📝 Developpement   
-Pour lancer l'écran de développement, exécutez la commande suivante :  
+To launch the development screen, run the following command:
 - npm start  
   
 ## 📝 API   
@@ -17,8 +17,8 @@ Pour lancer l'écran de développement, exécutez la commande suivante :
 [openweathermap](https://api.openweathermap.org)  
   
 ## 📝 publish  
-Avant de publier votre application, assurez-vous de configurer les accès GitHub dans le fichier forge.config afin de permettre les mises à jour des versions.
-(Pour information, si vous insérez la clé GitHub en dur, celle-ci sera automatiquement supprimée de vos clés au moment de la publication de la version, empêchant ainsi toute utilisation non autorisée.)   
+Before publishing your application, make sure you configure GitHub access in the forge.config file to enable version updates.  
+(For your information, if you insert the GitHub key in hard copy, it will be automatically deleted from your keys when the version is published, thus preventing any unauthorised use).
   
-Pour publier, exécutez la commande :  
+To publish, run the command : 
 - npm run publish
